@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cardgame</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <game>
+
+        <top-bar>
+            <game-name>Cardgame</game-name>
+
+            <game-info>
+                <turn>Seu turno</turn>
+                <turn-number>Turno 4</turn-number>
+            </game-info>
+        </top-bar>
+
+
+        <game-board>
+
+            <opponent-side>
+
+                <player-info>
+                    <player-name>Player 2</player-name>
+                    <energy>⚡ <span id="player-2-energy">3</span></energy>
+                </player-info>
+
+                <game-field>
+                    <card-slot></card-slot>
+                    <card-slot>
+                        <card> 
+                            <img src="https://c.l3n.co/wR6LYm.png" alt="Hannelore">
+                        </card>
+                    </card-slot>
+                    <card-slot></card-slot>
+                    <card-slot></card-slot>
+                    <card-slot></card-slot>
+                </game-field>
+
+                <deck data-count="27">
+                    <span>DECK</span>
+                </deck>
+
+            </opponent-side>
+
+
+            <backstage-zone>
+
+                <zone-name>BACKSTAGE</zone-name>
+
+                <card> 
+                            <img src="https://c.l3n.co/wR6LYm.png" alt="Hannelore">
+                        </card>
+
+            </backstage-zone>
+
+
+            <player-side>
+
+                <player-info>
+                    <player-name>Player 1</player-name>
+                    <energy>⚡ <span id="player-1-energy">5</span></energy>
+                </player-info>
+
+                <game-field>
+                    <card-slot></card-slot>
+                    <card-slot>
+                        <card> 
+                            <img src="https://a.l3n.co/wRTMhF.png" alt="Clarissa">
+                            <token-list>
+                                <element-token data-element="pyro"></element-token>
+                            </token-list>
+                        </card>
+                    </card-slot>
+                    <card-slot></card-slot>
+                    <card-slot>
+                        <card> 
+                            <img src="https://a.l3n.co/wR6Y2i.png" alt="Egglantine'">
+                            <token-list>
+                                <element-token data-element="electro"></element-token>
+                            </token-list>
+
+                        </card>
+                    </card-slot>
+                    <card-slot></card-slot>
+                </game-field>
+
+                <deck data-count="31">
+                    <span>DECK</span>
+                </deck>
+
+            </player-side>
+
+
+            <player-hand>
+
+                <card> 
+                    <img src="https://a.l3n.co/wRTMhF.png" alt="Clarissa">
+                </card>
+                <card></card>
+                <card></card>
+                <card></card>
+                <card></card>
+
+            </player-hand>
+
+
+            <board-overlay></board-overlay>
+
+        </game-board>
+
+
+        <side-panel>
+
+            <panel-tabs>
+                <button class="active">Chat</button>
+                <button>Log</button>
+                <button>Ações</button>
+            </panel-tabs>
+
+            <panel-content>
+                <p>Game log / chat</p>
+            </panel-content>
+
+        </side-panel>
+
+
+        <toolbar>
+
+            <button>↶</button>
+            <button>↷</button>
+
+            <button>Shuffle</button>
+            <button>Flip</button>
+            <button>Rotate</button>
+
+            <toolbar-spacer></toolbar-spacer>
+
+            <button>Pass Turn</button>
+
+        </toolbar>
+
+    </game>
+
+</body>
+</html>

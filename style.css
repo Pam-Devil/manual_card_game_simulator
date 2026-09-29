@@ -1,0 +1,678 @@
+/* ============================================================
+   RESET
+   ============================================================ */
+
+:root {
+    --aspect-ratio: 1535 / 2173;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+
+    background: #101216;
+    color: #e7e9ed;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* ============================================================
+   GAME SHELL
+   ============================================================ */
+
+game {
+    width: 100%;
+    height: 100dvh;
+
+    display: grid;
+
+    grid-template:
+        "top board panel" 52px
+        "top board panel" minmax(0, 1fr) "top board panel" 48px
+        / 0 minmax(0, 1fr) 280px;
+}
+
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+top-bar {
+    grid-area: top;
+
+    display: flex;
+    align-items: center;
+
+    padding-inline: 16px;
+
+    background: #181b20;
+    border-bottom: 1px solid #30343c;
+
+    game-name {
+        font-size: 14px;
+        font-weight: 650;
+    }
+
+    game-info {
+        margin-inline-start: auto;
+
+        display: flex;
+        gap: 16px;
+
+        font-size: 12px;
+    }
+
+    turn {
+        color: #82aaff;
+    }
+
+    turn-number {
+        color: #858b96;
+    }
+}
+
+
+/* ============================================================
+   BOARD
+   ============================================================ */
+
+game-board {
+    grid-area: board;
+
+    position: relative;
+
+    min-width: 0;
+    min-height: 0;
+
+    overflow: hidden;
+
+    display: grid;
+
+    grid-template-rows:
+        minmax(0, 1fr) 72px minmax(0, 1fr);
+
+    padding: 10px;
+
+    gap: 8px;
+
+    background:
+        radial-gradient(circle at center,
+            #282d34 0%,
+            #22262c 55%,
+            #1d2025 100%);
+}
+
+
+/* ============================================================
+   PLAYER AREAS
+   ============================================================ */
+
+opponent-side,
+player-side {
+    position: relative;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr) 110px;
+
+    align-items: center;
+
+    gap: 20px;
+
+    
+}
+
+opponent-side {
+    grid-row: 1;
+
+/*     background-image: url("https://b.l3n.co/cVPJKv.jpg");
+    background-size: cover; */
+}
+
+player-side {
+    grid-row: 3;
+/*     background-image: url("https://d.l3n.co/cVPBhb.jpg");
+    background-size: cover; */
+}
+
+
+/* ============================================================
+   PLAYER INFORMATION
+   ============================================================ */
+
+player-info {
+    position: absolute;
+
+    inset-inline-start: 0;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px 8px;
+
+    border: 1px solid #353a43;
+    border-radius: 4px;
+
+    background: rgb(15 17 21 / 70%);
+
+    font-size: 18px;
+
+    z-index: 2;
+}
+
+opponent-side player-info {
+    inset-block-start: 0;
+}
+
+player-side player-info {
+    inset-block-end: 0;
+}
+
+player-name {
+    font-weight: 650;
+}
+
+energy {
+    color: #d4a9ff;
+}
+
+
+/* ============================================================
+   FIELD
+   ============================================================ */
+
+game-field {
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 166px);
+
+    justify-content: center;
+
+    gap: 16px;
+
+    align-items: center;
+}
+
+opponent-side {
+    card {
+        transform: rotate(180deg);
+    }
+}
+
+card-slot {
+    width: min(100%, 166px);
+
+    aspect-ratio: var(--aspect-ratio);
+
+    border: 1px dashed #464c56;
+    border-radius: 5px;
+
+    background: rgb(255 255 255 / 1.5%);
+
+    transition:
+        border-color .12s ease,
+        background .12s ease;
+}
+
+card-slot:hover {
+    border-color: #666e7b;
+    background: rgb(255 255 255 / 3%);
+}
+
+
+/* ============================================================
+   DECK
+   ============================================================ */
+
+deck {
+    width: 166px;
+    aspect-ratio: var(--aspect-ratio);
+
+    position: absolute;
+    right: 0;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #5a606b;
+    border-radius: 6px;
+
+    background:
+        linear-gradient(145deg,
+            #363c47,
+            #1b1e24);
+
+    box-shadow:
+        2px 2px 0 #111318,
+        4px 4px 0 #111318;
+
+    color: #777e8a;
+
+    font-size: 9px;
+    letter-spacing: .12em;
+}
+
+deck::after {
+    content: attr(data-count);
+
+    position: absolute;
+
+    inset-inline-end: -8px;
+    inset-block-end: -8px;
+
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #3b4049;
+    border-radius: 50%;
+
+    background: #181b20;
+
+    color: #dfe2e7;
+
+    font-size: 12px;
+    font-weight: 650;
+}
+
+
+/* ============================================================
+   BACKSTAGE
+   ============================================================ */
+
+backstage-zone {
+    grid-row: 2;
+
+    position: relative;
+
+    display: grid;
+    place-items: center;
+}
+
+backstage-zone::before {
+    content: "";
+
+    position: absolute;
+
+    inset-inline: 0;
+    top: 50%;
+
+    height: 1px;
+
+    background: rgb(255 255 255 / 7%);
+}
+
+zone-name {
+    position: absolute;
+
+    z-index: 1;
+
+    padding-inline: 8px;
+
+    background: #24282e;
+
+    color: #696f79;
+
+    font-size: 8px;
+    letter-spacing: .14em;
+}
+
+backstage-zone card {
+    position: relative;
+
+    top: -5rem;
+
+    align-self: center;
+
+    z-index: 2;
+
+    width: 156px;
+    aspect-ratio: var(--aspect-ratio);
+
+    border: 1px solid #565d68;
+    border-radius: 5px;
+
+    background:
+        linear-gradient(145deg,
+            #343a45,
+            #191c22);
+
+    box-shadow: 0 3px 8px rgb(0 0 0 / 35%);
+
+    transform: rotate(90deg);
+}
+
+
+/* ============================================================
+   CARD
+   ============================================================ */
+
+card {
+    display: block;
+    position: relative;
+
+    width: 166px;
+
+    border: 1px solid #626976;
+    border-radius: 6px;
+
+    background:
+        linear-gradient(145deg,
+            #414853,
+            #1c2026);
+
+    box-shadow:
+        0 4px 10px rgb(0 0 0 / 35%);
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    token-list {
+        display: flex;
+        position: absolute;
+
+        top: -8%;
+        left: 15%;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        element-token {
+
+            width: 40px;
+            aspect-ratio: 1;
+
+            border-radius: 50%;
+
+            z-index: 5;
+
+            &[data-element="pyro"] {
+                background: #e76f51;
+            }
+
+            &[data-element="hydro"] {
+                background: #4dabf7;
+            }
+
+            &[data-element="cryo"] {
+                background: #9be7ff;
+            }
+
+            &[data-element="electro"] {
+                background: #9b7ede;
+            }
+        }
+    }
+
+}
+
+
+/* ============================================================
+   PLAYER HAND
+   ============================================================ */
+
+player-hand {
+    position: absolute;
+
+    z-index: 20;
+
+    inset-inline: 0;
+    inset-block-end: -58px;
+
+    height: 190px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+
+    padding-inline: 40px;
+
+    pointer-events: none;
+}
+
+player-hand card {
+    width: 146px;
+    aspect-ratio: var(--aspect-ratio);
+
+    flex: 0 0 auto;
+
+    margin-inline-start: -28px;
+
+    pointer-events: auto;
+
+    cursor: pointer;
+
+    transition:
+        transform .12s ease,
+        margin .12s ease;
+
+    &:first-child {
+        margin-inline-start: 0;
+    }
+
+    &:hover {
+        position: relative;
+        z-index: 2;
+
+        margin-inline: 5px;
+
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+
+/* ============================================================
+   BOARD OVERLAY
+   ============================================================ */
+
+board-overlay {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 30;
+
+    pointer-events: none;
+}
+
+
+/* ============================================================
+   SIDE PANEL
+   ============================================================ */
+
+side-panel {
+    grid-area: panel;
+
+    min-width: 0;
+    min-height: 0;
+
+    display: grid;
+
+    grid-template-rows: 42px minmax(0, 1fr);
+
+    background: #181b20;
+
+    border-left: 1px solid #30343c;
+}
+
+panel-tabs {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    border-bottom: 1px solid #30343c;
+}
+
+panel-tabs button {
+    border: 0;
+    border-bottom: 2px solid transparent;
+
+    background: transparent;
+
+    color: #777e89;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+panel-tabs button:hover {
+    color: #dfe2e7;
+    background: rgb(255 255 255 / 3%);
+}
+
+panel-tabs button.active {
+    color: #e7e9ed;
+    border-bottom-color: #739cf5;
+}
+
+panel-content {
+    min-height: 0;
+
+    overflow: auto;
+
+    padding: 12px;
+
+    color: #777e89;
+
+    font-size: 12px;
+}
+
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+toolbar {
+    grid-area: board;
+
+    align-self: center;
+
+    z-index: 50;
+
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding-inline: 10px;
+
+    pointer-events: none;
+}
+
+toolbar button {
+    height: 30px;
+
+    padding-inline: 9px;
+
+    border: 1px solid #3a3f48;
+    border-radius: 4px;
+
+    background: #191c21;
+
+    color: #9299a5;
+
+    cursor: pointer;
+
+    pointer-events: auto;
+
+    font-size: 11px;
+}
+
+toolbar button:hover {
+    background: #272c34;
+    color: #e7e9ed;
+}
+
+toolbar-spacer {
+    flex: 1;
+}
+
+
+/* ============================================================
+   SMALL SCREENS
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    game {
+        grid-template:
+            "top" 48px
+            "board" minmax(0, 1fr) / 1fr;
+    }
+
+    side-panel {
+        display: none;
+    }
+
+    game-board {
+        padding: 6px;
+    }
+
+    opponent-side,
+    player-side {
+        grid-template-columns:
+            minmax(0, 1fr) 80px;
+
+        gap: 8px;
+    }
+
+
+
+    game-field {
+        gap: 5px;
+    }
+
+    deck {
+        width: 72px;
+    }
+
+    player-hand {
+        padding-inline: 15px;
+    }
+
+    player-hand card {
+        width: 88px;
+        margin-inline-start: -40px;
+
+        &:hover {
+            transform: translateY(-48px);
+        }
+    }
+}
