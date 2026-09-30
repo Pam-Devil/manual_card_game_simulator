@@ -24,6 +24,19 @@
         </top-bar>
 
 
+        <action-menu popover>
+            <action data-action="move">Mover</action>
+            <action data-action="target">Alvejar</action>
+            <action data-action="attack">Atacar</action>
+            <action data-action="declare">Declarar</action>
+            <action data-action="flip">Virar</action>
+            <action data-action="to_top_deck">Para T. Deck</action>
+            <action data-action="to_bot_deck">Para F. Deck</action>
+            <action data-action="to_hand">Para a Mão</action>
+            <action data-action="to_backstage">Para Backstage</action>
+            <action data-action="add_token">Elemental Token</action>
+        </action-menu>
+
         <game-board>
 
             <opponent-side>
@@ -33,16 +46,12 @@
                     <energy>⚡ <span id="player-2-energy">3</span></energy>
                 </player-info>
 
-                <game-field>
-                    <card-slot></card-slot>
-                    <card-slot>
-                        <card> 
-                            <img src="https://c.l3n.co/wR6LYm.png" alt="Hannelore">
-                        </card>
-                    </card-slot>
-                    <card-slot></card-slot>
-                    <card-slot></card-slot>
-                    <card-slot></card-slot>
+                <game-field data-player="2">
+                    <card-slot data-slot="0"></card-slot>
+                    <card-slot data-slot="1"></card-slot>
+                    <card-slot data-slot="2"></card-slot>
+                    <card-slot data-slot="3"></card-slot>
+                    <card-slot data-slot="4"></card-slot>
                 </game-field>
 
                 <deck data-count="27">
@@ -53,13 +62,7 @@
 
 
             <backstage-zone>
-
                 <zone-name>BACKSTAGE</zone-name>
-
-                <card> 
-                            <img src="https://c.l3n.co/wR6LYm.png" alt="Hannelore">
-                        </card>
-
             </backstage-zone>
 
 
@@ -70,27 +73,12 @@
                     <energy>⚡ <span id="player-1-energy">5</span></energy>
                 </player-info>
 
-                <game-field>
-                    <card-slot></card-slot>
-                    <card-slot>
-                        <card> 
-                            <img src="https://a.l3n.co/wRTMhF.png" alt="Clarissa">
-                            <token-list>
-                                <element-token data-element="pyro"></element-token>
-                            </token-list>
-                        </card>
-                    </card-slot>
-                    <card-slot></card-slot>
-                    <card-slot>
-                        <card> 
-                            <img src="https://a.l3n.co/wR6Y2i.png" alt="Egglantine'">
-                            <token-list>
-                                <element-token data-element="electro"></element-token>
-                            </token-list>
-
-                        </card>
-                    </card-slot>
-                    <card-slot></card-slot>
+                <game-field data-player="1">
+                    <card-slot data-slot="0"></card-slot>
+                    <card-slot data-slot="1"></card-slot>
+                    <card-slot data-slot="2"></card-slot>
+                    <card-slot data-slot="3"></card-slot>
+                    <card-slot data-slot="4"></card-slot>
                 </game-field>
 
                 <deck data-count="31">
@@ -101,10 +89,6 @@
 
 
             <player-hand>
-
-                <card> 
-                    <img src="https://a.l3n.co/wRTMhF.png" alt="Clarissa">
-                </card>
                 <card></card>
                 <card></card>
                 <card></card>
@@ -141,6 +125,7 @@
             <button>Shuffle</button>
             <button>Flip</button>
             <button>Rotate</button>
+            <button data-action="switch_players">switch</button>
 
             <toolbar-spacer></toolbar-spacer>
 
@@ -149,6 +134,7 @@
         </toolbar>
 
     </game>
-
+    <script src="./main.js" type="module"></script>
 </body>
+
 </html>
