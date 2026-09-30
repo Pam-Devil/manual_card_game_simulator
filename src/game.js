@@ -186,6 +186,46 @@ export function renderField(player) {
     });
 }
 
+export function setActiveDeck(deck) {
+    const player = Number(deck.dataset.player);
+
+    // Só o dono pode interagir com o deck
+    if (player !== session.player)
+        return;
+
+    clearActiveDeck();
+
+    activeDeck = deck;
+
+    activeDeck.style.anchorName = "--active-deck";
+
+    deckActionsMenu.showPopover();
+}
+
+
+export function clearActiveDeck() {
+    if (!activeDeck)
+        return;
+
+    activeDeck.style.removeProperty("anchor-name");
+
+    activeDeck = null;
+
+    deckActionsMenu.hidePopover();
+}
+
+export function renderDeck(player) {
+    const grid = document.querySelector("zone-grid");
+
+    grid.replaceChildren();
+
+    const deck = gameState[`player_${player}_deck`];
+
+    for (const instanceId of deck) {
+        grid.append(createCard(instanceId));
+    }
+}
+
 export function renderHand(player) {
     const hand = document.querySelector("player-hand");
 
@@ -211,6 +251,16 @@ export function renderBackstage() {
         return;
 
     backstage.append(createCard(topCard));
+}
+
+export function renderBackstageModal() {
+    const grid = document.querySelector("zone-grid");
+
+    grid.replaceChildren();
+
+    for (const instanceId of gameState.backstage) {
+        grid.append(createCard(instanceId));
+    }
 }
 
 export function render() {
@@ -243,6 +293,14 @@ export function moveCard(instanceId, destination) {
 
     if (destination.zone === "player_2_hand") {
         gameState.player_2_hand.push(instanceId);
+    }
+
+    if (destination.zone === "player_1_deck") {
+        gameState.player_1_deck.push(instanceId);
+    }
+
+    if (destination.zone === "player_2_deck") {
+        gameState.player_2_deck.push(instanceId);
     }
 
     if (destination.zone === "player_1_field") {

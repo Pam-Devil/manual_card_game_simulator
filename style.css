@@ -311,6 +311,124 @@ deck {
     letter-spacing: .12em;
 }
 
+deck-actions-menu {
+    position: fixed;
+
+    position-anchor: --active-deck;
+
+    position-area: top;
+
+    display: none;
+
+    flex-direction: column;
+
+    min-width: 150px;
+
+    padding: 5px;
+
+    border: 1px solid #3a3f48;
+    border-radius: 6px;
+
+    background: #181b20;
+    color: white;
+
+    box-shadow: 0 10px 30px rgb(0 0 0 / 50%);
+
+    &::backdrop {
+        background: transparent;
+    }
+
+    &:popover-open {
+        display: flex;
+    }
+
+    action {
+        display: block;
+
+        padding: 9px 12px;
+
+        border-radius: 4px;
+
+        cursor: pointer;
+
+        &:hover {
+            background: #2a2e35;
+        }
+    }
+}
+
+zone-modal {
+    position: fixed;
+    inset: 50% auto auto 50%;
+
+    width: min(900px, 90vw);
+    height: min(700px, 85vh);
+
+    translate: -50% -50%;
+
+    padding: 20px;
+
+    border: 1px solid #3a3f48;
+    border-radius: 10px;
+
+    background: #181b20;
+    color: white;
+
+    box-shadow:
+        0 20px 60px rgb(0 0 0 / 60%);
+
+    overflow: hidden;
+
+    &::backdrop {
+        background: rgb(0 0 0 / 65%);
+        backdrop-filter: blur(3px);
+    }
+
+    zone-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin-bottom: 16px;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        button {
+            width: 32px;
+            height: 32px;
+
+            border: 0;
+            border-radius: 5px;
+
+            background: #2a2e35;
+            color: white;
+
+            cursor: pointer;
+        }
+    }
+
+    zone-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 130px);
+    justify-content: start;
+    align-content: start;
+    gap: 12px;
+    overflow-y: auto;
+    padding: 5px;
+
+    card {
+        width: 130px;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.04);
+            z-index: 2;
+        }
+    }
+}
+}
+
 deck::after {
     content: attr(data-count);
 

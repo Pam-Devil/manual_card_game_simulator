@@ -31,11 +31,27 @@
             <action data-action="declare">Declarar</action>
             <action data-action="flip">Virar</action>
             <action data-action="to_top_deck">Para T. Deck</action>
-            <action data-action="to_bot_deck">Para F. Deck</action>
             <action data-action="to_hand">Para a Mão</action>
             <action data-action="to_backstage">Para Backstage</action>
             <action data-action="add_token">Elemental Token</action>
+            <action data-action="show_deck">Show Deck</action>
         </action-menu>
+
+        <deck-actions-menu popover>
+            <action data-action="mill">Descartar Topo</action>
+            <action data-action="show_deck">Abrir Deck</action>
+            <action data-action="shuffle">Embaralhar</action>
+            <action data-action="draw">Comprar</action>
+        </deck-actions-menu>
+
+<zone-modal popover="manual">
+    <zone-header>
+        <span>DECK</span>
+        <button data-action="close-deck">×</button>
+    </zone-header>
+
+    <zone-grid></zone-grid>
+</zone-modal>
 
         <game-board>
 
@@ -54,7 +70,7 @@
                     <card-slot data-slot="4"></card-slot>
                 </game-field>
 
-                <deck data-count="27">
+                <deck data-count="27" data-player="2">
                     <span>DECK</span>
                 </deck>
 
@@ -81,7 +97,7 @@
                     <card-slot data-slot="4"></card-slot>
                 </game-field>
 
-                <deck data-count="31">
+                <deck data-count="31" data-player="1">
                     <span>DECK</span>
                 </deck>
 
@@ -119,10 +135,10 @@
 
         <toolbar>
 
-            <button>↶</button>
-            <button>↷</button>
+            <button>+1 Energia</button>
+            <button>-1 Energia</button>
 
-            <button>Shuffle</button>
+            <button data-action="shuffle_hand">Hand Shuffle</button>
             <button>Flip</button>
             <button>Rotate</button>
             <button data-action="switch_players">switch</button>

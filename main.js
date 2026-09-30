@@ -1,10 +1,90 @@
-import { gameState, moveCard, render, serialize_card } from "./src/game.js";
+import { gameState, moveCard, render, renderBackstageModal, renderDeck, serialize_card} from "./src/game.js";
 import { session, switchPerspective } from "./src/session.js";
 
 const actionMenu = document.querySelector("action-menu");
 const toolBar = document.querySelector("toolbar");
-
+const deckActionsMenu = document.querySelector("deck-actions-menu");
 let activeCard = null;
+let activeDeck = null;
+
+const zoneModal = document.querySelector("zone-modal");
+
+const backstageZone = document.querySelector("backstage-zone");
+
+backstageZone.addEventListener("click", () => {
+    renderBackstageModal();
+
+    zoneModal.querySelector("zone-header span").textContent = "BACKSTAGE";
+
+    zoneModal.showPopover();
+});
+
+function setActiveDeck(deck) {
+    if (activeDeck === deck)
+        return;
+
+    clearActiveDeck();
+
+    const player = Number(deck.dataset.player);
+
+    // Só o dono do deck pode interagir com ele
+    if (player !== session.player)
+        return;
+
+    activeDeck = deck;
+
+    activeDeck.style.anchorName = "--active-deck";
+
+    deckActionsMenu.showPopover();
+}
+
+export function shuffleDeck(player) {
+    const deck = gameState[`player_${player}_deck`];
+
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+
+    render();
+}
+
+export function shuffle_hand(player){
+    const hand = gameState[`player_${player}_hand`];
+
+    for (let i = hand.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        [hand[i], hand[j]] = [hand[j], hand[i]];
+    }
+
+    render();
+}
+
+
+function clearActiveDeck() {
+    if (!activeDeck)
+        return;
+
+    activeDeck.style.removeProperty("anchor-name");
+
+    activeDeck = null;
+
+    deckActionsMenu.hidePopover();
+}
+
+
+zoneModal.addEventListener("click", event => {
+    const button = event.target.closest('[data-action="close-deck"]');
+
+    if (!button)
+        return;
+
+    zoneModal.hidePopover();
+    shuffleDeck(session.player);
+});
+
 
 function setActiveCard(card) {
     if (activeCard === card)
@@ -60,6 +140,46 @@ document.addEventListener("pointerout", event => {
     clearActiveCard();
 });
 
+document.addEventListener("pointerover", event => {
+    const deck = event.target.closest("deck");
+
+    if (!deck)
+        return;
+
+    setActiveDeck(deck);
+});
+
+document.addEventListener("pointerout", event => {
+    if (!activeDeck)
+        return;
+
+    const related = event.relatedTarget;
+
+    // Continua dentro do deck
+    if (related?.closest?.("deck") === activeDeck)
+        return;
+
+    // Está indo para o menu
+    if (related?.closest?.("deck-actions-menu"))
+        return;
+
+    clearActiveDeck();
+});
+
+deckActionsMenu.addEventListener("pointerout", event => {
+    const related = event.relatedTarget;
+
+    // Voltando para o deck
+    if (related?.closest?.("deck") === activeDeck)
+        return;
+
+    // Continua dentro do menu
+    if (related?.closest?.("deck-actions-menu"))
+        return;
+
+    clearActiveDeck();
+});
+
 actionMenu.addEventListener("pointerout", event => {
     const related = event.relatedTarget;
 
@@ -82,8 +202,73 @@ toolBar.addEventListener("click", event => {
             switchPerspective();
             break;
         }
+        case "shuffle_hand":{
+            shuffle_hand(session.player);
+            break;
+        }
     }
 });
+
+const deckActions = {
+
+    mill: function (data) {
+        const deck = gameState[`player_${data.player}_deck`];
+
+        if (!deck.length)
+            return;
+
+        const instanceId = deck.at(-1);
+
+        moveCard(instanceId, {
+            zone: "backstage"
+        });
+    },
+
+
+    show_deck: function (data) {
+        renderDeck(data.player);
+
+        clearActiveDeck();
+
+        zoneModal.showPopover();
+    },
+
+
+    draw: function (data) {
+        const deck = gameState[`player_${data.player}_deck`];
+
+        if (!deck.length)
+            return;
+
+        const instanceId = deck.at(-1);
+
+        moveCard(instanceId, {
+            zone: `player_${data.player}_hand`
+        });
+    },
+    shuffle: function(data){
+        shuffleDeck(session.player)
+    }
+
+};
+
+deckActionsMenu.addEventListener("click", event => {
+    const action = event.target.closest("action");
+
+    if (!action || !activeDeck)
+        return;
+
+    const player = Number(activeDeck.dataset.player);
+
+    // Segurança da própria UI
+    if (player !== session.player)
+        return;
+
+    deckActions[action.dataset.action]?.({
+        player
+    });
+});
+
 
 const actions = {
     to_backstage: function (data) {
@@ -171,25 +356,25 @@ const actions = {
 
         function handle_target_click(event) {
             const card = event.target.closest("card");
-            if(!card) return;
+            if (!card) return;
 
             const card_instance = card.dataset.instance;
 
             const target = document.querySelector(
-            `[data-instance="${card_instance}"]`
-        );
+                `[data-instance="${card_instance}"]`
+            );
 
-        if (!card) return;
+            if (!card) return;
 
-        card.classList.remove("targeted");
+            card.classList.remove("targeted");
 
-        void card.offsetWidth;
+            void card.offsetWidth;
 
-        card.classList.add("targeted");
+            card.classList.add("targeted");
 
-        card.addEventListener("animationend", () => {
-            card.classList.remove("declare");
-        }, { once: true });
+            card.addEventListener("animationend", () => {
+                card.classList.remove("declare");
+            }, { once: true });
 
             if (!card)
                 return;
@@ -217,25 +402,25 @@ const actions = {
 
         function handle_attack_click(event) {
             const card = event.target.closest("card");
-            if(!card) return;
+            if (!card) return;
 
             const card_instance = card.dataset.instance;
 
             const target = document.querySelector(
-            `[data-instance="${card_instance}"]`
-        );
+                `[data-instance="${card_instance}"]`
+            );
 
-        if (!card) return;
+            if (!card) return;
 
-        card.classList.remove("attacked");
-
-        void card.offsetWidth;
-
-        card.classList.add("attacked");
-
-        card.addEventListener("animationend", () => {
             card.classList.remove("attacked");
-        }, { once: true });
+
+            void card.offsetWidth;
+
+            card.classList.add("attacked");
+
+            card.addEventListener("animationend", () => {
+                card.classList.remove("attacked");
+            }, { once: true });
 
             if (!card)
                 return;
@@ -254,7 +439,21 @@ const actions = {
         }
 
         enable_attack_mode();
+    },
+    to_top_deck: function (data) {
+        const deck = `player_${session.player}_deck`
+        moveCard(data.instanceId, { zone: deck });
+    },
+    show_deck: function (data) {
+        renderDeck(session.player);
+
+        actionMenu.hidePopover();
+
+        const deckModal = document.querySelector("zone-modal");
+
+        deckModal.showPopover();
     }
+
 }
 
 
