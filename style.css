@@ -49,7 +49,8 @@ game {
 
     grid-template:
         "top board panel" 52px
-        "top board panel" minmax(0, 1fr) "top board panel" 48px
+        "top board panel" minmax(0, 1fr)
+        "top board panel" 48px
         / 0 minmax(0, 1fr) 280px;
 }
 
@@ -131,20 +132,34 @@ player-side {
     grid-row: 3;
 }
 
+opponent-side card {
+    --view-rotation: 180deg;
+}
+
+player-side card {
+    --view-rotation: 0deg;
+}
+
+opponent-side card {
+    --view-rotation: 180deg;
+}
+
+/* Quando o Player 2 está olhando */
+game-board.player-two-view opponent-side card {
+    --view-rotation: 0deg;
+}
+
+game-board.player-two-view player-side card {
+    --view-rotation: 180deg;
+}
+
+
 game-board.player-two-view opponent-side {
     grid-row: 3;
-
-    card {
-        transform: rotate(0deg);
-    }
 }
 
 game-board.player-two-view player-side {
     grid-row: 1;
-
-    card {
-        transform: rotate(180deg);
-    }
 }
 
 /* ============================================================
@@ -245,12 +260,6 @@ game-field {
     align-items: center;
 }
 
-opponent-side {
-    card {
-        transform: rotate(180deg);
-    }
-}
-
 card-slot {
     width: 233px;
 
@@ -268,7 +277,7 @@ card-slot {
         border-color .12s ease,
         background .12s ease;
 
-    &.move_mode{
+    &.move_mode {
         outline: 2px dashed rgba(255, 255, 255, 0.342);
     }
 }
@@ -363,20 +372,17 @@ zone-modal {
 
     width: min(900px, 90vw);
     height: min(700px, 85vh);
-
     translate: -50% -50%;
 
     padding: 20px;
-
     border: 1px solid #3a3f48;
     border-radius: 10px;
-
     background: #181b20;
     color: white;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 60%);
 
-    box-shadow:
-        0 20px 60px rgb(0 0 0 / 60%);
-
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
 
     &::backdrop {
@@ -388,45 +394,48 @@ zone-modal {
         display: flex;
         align-items: center;
         justify-content: space-between;
-
+        flex: 0 0 auto;
         margin-bottom: 16px;
-
         font-size: 14px;
         font-weight: 700;
 
         button {
             width: 32px;
             height: 32px;
-
             border: 0;
             border-radius: 5px;
-
             background: #2a2e35;
             color: white;
-
             cursor: pointer;
         }
     }
 
     zone-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 130px);
-    justify-content: start;
-    align-content: start;
-    gap: 12px;
-    overflow-y: auto;
-    padding: 5px;
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fill,
+            130px
+        );
+        justify-content: start;
+        align-content: start;
+        gap: 3rem;
 
-    card {
-        width: 130px;
-        cursor: pointer;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 5px;
 
-        &:hover {
-            transform: scale(1.04);
-            z-index: 2;
+        card {
+            width: 130px;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.04);
+                z-index: 2;
+            }
         }
     }
-}
 }
 
 deck::after {
@@ -543,66 +552,47 @@ backstage-zone card {
     }
 }
 
-@keyframes target-animation {
-    0% {
-        transform: translate(-50%, -50%) scale(0.1);
-        opacity: 1;
-    }
-
-    40% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.9;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-    }
-}
-@keyframes target-animation {
-    0% {
-        transform: translate(-50%, -50%) scale(0.1);
-        opacity: 1;
-    }
-
-    40% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.9;
-    }
-
-    100% {
-        transform: translate(-50%, -50%) scale(1.5);
-        opacity: 0;
-    }
-}
 card {
     display: block;
+
     position: relative;
 
     width: 166px;
+    aspect-ratio: var(--aspect-ratio);
 
-    border: 1px solid #626976;
-    border-radius: 6px;
+    flex: 0 0 auto;
 
-    background:
-        linear-gradient(145deg,
-            #414853,
-            #1c2026);
+    --view-rotation: 0deg;
+    --card-rotation: 0deg;
 
-    box-shadow:
-        0 4px 10px rgb(0 0 0 / 35%);
+    transform:
+        rotate(var(--view-rotation)) rotate(var(--card-rotation));
+
+
+    &>card-data {
+        display: block;
+
+        position: absolute;
+        inset: 0;
+
+        transform-origin: top left;
+        transform: scale(0.675);
+    }
 
     img {
         display: block;
         width: 100%;
         height: auto;
     }
+
     &.attack-able {
         outline: 5px solid rgb(151, 30, 17);
     }
+
     &.targetable {
         outline: 5px dashed rgb(171, 57, 175);
-    } 
+    }
+
     &.declare::after {
         content: "";
         position: absolute;
@@ -660,8 +650,8 @@ card {
         animation: declare-animation 0.35s ease-out forwards;
     }
 
-    &.flip{
-        transform: rotate(-90deg);
+    &.flip {
+        --card-rotation: -90deg;
     }
 
     token-list {

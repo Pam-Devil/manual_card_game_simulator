@@ -1,10 +1,11 @@
-import { gameState, moveCard, render, renderBackstageModal, renderDeck, serialize_card} from "./src/game.js";
+import { cardState, gameState, moveCard, render, renderBackstageModal, renderDeck, serialize_card} from "./src/game.js";
 import { session, switchPerspective } from "./src/session.js";
 
 const actionMenu = document.querySelector("action-menu");
 const toolBar = document.querySelector("toolbar");
 const deckActionsMenu = document.querySelector("deck-actions-menu");
 let activeCard = null;
+let activeCardElement = null;
 let activeDeck = null;
 
 const zoneModal = document.querySelector("zone-modal");
@@ -62,6 +63,38 @@ export function shuffle_hand(player){
     render();
 }
 
+let activeTargetMode = null;
+let activeAttackMode = null;
+
+function clearTargetMode() {
+    if (activeTargetMode) {
+        document.removeEventListener("click", activeTargetMode);
+        activeTargetMode = null;
+    }
+
+    document.querySelectorAll(".targetable")
+        .forEach(card => {
+            card.classList.remove("targetable");
+        });
+}
+
+function clearAttackMode() {
+    if (activeAttackMode) {
+        document.removeEventListener("click", activeAttackMode);
+        activeAttackMode = null;
+    }
+
+    document.querySelectorAll(".attack-able")
+        .forEach(card => {
+            card.classList.remove("attack-able");
+        });
+}
+
+function clearCombatModes() {
+    clearTargetMode();
+    clearAttackMode();
+}
+
 
 function clearActiveDeck() {
     if (!activeDeck)
@@ -73,7 +106,17 @@ function clearActiveDeck() {
 
     deckActionsMenu.hidePopover();
 }
+function closeZoneModal() {
+    if (zoneModal.matches(":popover-open")) {
+        zoneModal.hidePopover();
+    }
 
+    const grid = zoneModal.querySelector("zone-grid");
+
+    if (grid) {
+        grid.replaceChildren();
+    }
+}
 
 zoneModal.addEventListener("click", event => {
     const button = event.target.closest('[data-action="close-deck"]');
@@ -83,6 +126,7 @@ zoneModal.addEventListener("click", event => {
 
     zoneModal.hidePopover();
     shuffleDeck(session.player);
+    closeZoneModal();
 });
 
 
@@ -111,7 +155,6 @@ function clearActiveCard() {
 
     actionMenu.hidePopover();
 
-    console.log(actionMenu.matches(":popover-open"));
 }
 
 document.addEventListener("pointerover", event => {
@@ -269,6 +312,17 @@ deckActionsMenu.addEventListener("click", event => {
     });
 });
 
+function playCardAnimation(card, className, duration = 350) {
+    card.classList.remove(className);
+
+    void card.offsetWidth;
+
+    card.classList.add(className);
+
+    setTimeout(() => {
+        card.classList.remove(className);
+    }, duration);
+}
 
 const actions = {
     to_backstage: function (data) {
@@ -329,7 +383,8 @@ const actions = {
         );
 
         if (!card) return;
-        card.classList.toggle("flip");
+        cardState[data.instanceId].flip = !(cardState[data.instanceId].flip);
+        render();
     },
     declare: function (data) {
         const card = document.querySelector(
@@ -348,98 +403,78 @@ const actions = {
             card.classList.remove("declare");
         }, { once: true });
     },
-    target: function (data) {
-        const cards = document.querySelectorAll("card-slot card")
-        cards.forEach(card => {
-            card.classList.add("targetable")
-        });
+target: function (data) {
+    clearCombatModes();
 
-        function handle_target_click(event) {
-            const card = event.target.closest("card");
-            if (!card) return;
+    const cards = document.querySelectorAll("card-slot card");
 
-            const card_instance = card.dataset.instance;
+    cards.forEach(card => {
+        card.classList.add("targetable");
+    });
 
-            const target = document.querySelector(
-                `[data-instance="${card_instance}"]`
-            );
+    function handle_target_click(event) {
+        const card = event.target.closest("card-slot card");
 
-            if (!card) return;
+        if (!card)
+            return;
 
-            card.classList.remove("targeted");
+        const card_instance = card.dataset.instance;
 
-            void card.offsetWidth;
+        const target = document.querySelector(
+            `[data-instance="${card_instance}"]`
+        );
 
-            card.classList.add("targeted");
+        if (!target)
+            return;
 
-            card.addEventListener("animationend", () => {
-                card.classList.remove("declare");
-            }, { once: true });
+        playCardAnimation(target, "targeted");
 
-            if (!card)
-                return;
+        clearTargetMode();
+    }
 
-            disable_target_mode();
-            cards.forEach(card => {
-                card.classList.remove("targetable");
-            })
-        }
+    activeTargetMode = handle_target_click;
 
-        function enable_target_mode() {
-            document.addEventListener("click", handle_target_click);
-        }
-        function disable_target_mode() {
-            document.removeEventListener("click", handle_target_click);
-        }
+    document.addEventListener(
+        "click",
+        handle_target_click
+    );
+},
+attack: function (data) {
+    clearCombatModes();
 
-        enable_target_mode();
-    },
-    attack: function (data) {
-        const cards = document.querySelectorAll("card-slot card")
-        cards.forEach(card => {
-            card.classList.add("attack-able")
-        });
+    const cards = document.querySelectorAll("card-slot card");
 
-        function handle_attack_click(event) {
-            const card = event.target.closest("card");
-            if (!card) return;
+    cards.forEach(card => {
+        card.classList.add("attack-able");
+    });
 
-            const card_instance = card.dataset.instance;
+    function handle_attack_click(event) {
+        const card = event.target.closest("card-slot card");
 
-            const target = document.querySelector(
-                `[data-instance="${card_instance}"]`
-            );
+        if (!card)
+            return;
 
-            if (!card) return;
+        const card_instance = card.dataset.instance;
 
-            card.classList.remove("attacked");
+        const target = document.querySelector(
+            `[data-instance="${card_instance}"]`
+        );
 
-            void card.offsetWidth;
+        if (!target)
+            return;
 
-            card.classList.add("attacked");
+        playCardAnimation(target, "attacked");
 
-            card.addEventListener("animationend", () => {
-                card.classList.remove("attacked");
-            }, { once: true });
+        clearAttackMode();
+    }
 
-            if (!card)
-                return;
+    activeAttackMode = handle_attack_click;
 
-            disable_attack_mode();
-            cards.forEach(card => {
-                card.classList.remove("attack-able");
-            })
-        }
-
-        function enable_attack_mode() {
-            document.addEventListener("click", handle_attack_click);
-        }
-        function disable_attack_mode() {
-            document.removeEventListener("click", handle_attack_click);
-        }
-
-        enable_attack_mode();
-    },
+    document.addEventListener(
+        "click",
+        handle_attack_click
+    );
+},
     to_top_deck: function (data) {
         const deck = `player_${session.player}_deck`
         moveCard(data.instanceId, { zone: deck });
@@ -462,6 +497,10 @@ actionMenu.addEventListener("click", event => {
 
     if (!button || !activeCard)
         return;
+console.log("ACTIVE CARD:", activeCard);
+    console.log("ACTIVE INSTANCE:", activeCard.dataset.instance);
+    console.log("INSTANCE NUMBER:", Number(activeCard.dataset.instance));
+    console.log("ACTION:", button.dataset.action);
 
     const instanceId = Number(activeCard.dataset.instance);
 
