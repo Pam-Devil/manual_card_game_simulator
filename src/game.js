@@ -10,140 +10,127 @@ const card_database = [
     "name": "Duelista das Chamas",
     "element": "pyro",
     "cost": 3,
-    "atk": 800,
-    "hp": 900,
+    "hp": 8,
     "art": "https://d.l3n.co/wE4kJ0.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Quando esta carta entra em cena: Revele uma carta de unidade pyro na sua mão; compre 1 carta. \n (1-En) Ato: Revele uma carta pyro da sua mão: esta carta recebe +300 ATK até o fim do turno. \n (2-En) Ato: Revele uma carta pyro e uma carta anemo da sua mão: destrua uma unidade com 500 ATK ou menos."
+    "effect": "(1-En) Quando esta carta entra em cena: Revele uma carta de unidade pyro na sua mão; compre 1 carta.\n(1-En) Ato: Revele uma carta pyro da sua mão: aplique 1 token pyro a esta carta.\n(2-En) Ato: Revele uma carta pyro e uma carta anemo da sua mão: aplique 1 token pyro e 1 token anemo a uma unidade."
   },
   {
     "id": "002-hydro-cantora-das-mares",
     "name": "Cantora das Marés",
     "element": "hydro",
     "cost": 3,
-    "atk": 500,
-    "hp": 1100,
+    "hp": 8,
     "art": "https://c.l3n.co/wE41Br.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Quando esta carta entra em cena: Escolha uma unidade sua; mova 1 token elemental dela para outra unidade sua. \n (1-En) Ato: Revele uma carta hydro da sua mão: uma unidade sua recebe +200 HP até o fim do turno. \n (2-En) Ato: Revele uma carta hydro e uma carta cryo da sua mão: devolva 1 token elemental de uma unidade oponente para a reserva."
+    "effect": "(1-En) Quando esta carta entra em cena: Escolha uma unidade sua; mova 1 token elemental dela para outra unidade sua.\n(1-En) Ato: Revele uma carta hydro da sua mão: uma unidade sua recupera 2 de vida.\n(2-En) Ato: Revele uma carta hydro e uma carta cryo da sua mão: devolva 1 token elemental de uma unidade oponente para a reserva."
   },
   {
     "id": "003-anemo-bailarina-das-brisas",
     "name": "Bailarina das Brisas",
     "element": "anemo",
     "cost": 2,
-    "atk": 600,
-    "hp": 700,
+    "hp": 6,
     "art": "https://c.l3n.co/wE4ZpT.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Ato: Revele uma carta anemo da sua mão: devolva esta carta para sua mão. \n (2-En) Ato: Revele uma carta anemo e uma carta hydro da sua mão: devolva uma unidade com 700 ATK ou menos para a mão do seu dono. \n (1-En) Quando esta carta retorna do Backstage ao campo: Escolha uma unidade sua; ela pode atacar imediatamente."
+    "effect": "(1-En) Ato: Revele uma carta anemo da sua mão: devolva esta carta para sua mão.\n(2-En) Ato: Revele uma carta anemo e uma carta hydro da sua mão: devolva uma unidade para a mão do seu dono.\n(1-En) Quando esta carta retorna do Backstage ao campo: Escolha uma unidade sua; ela pode realizar um ataque imediatamente."
   },
   {
     "id": "004-electro-magico-dos-relampagos",
     "name": "Mágico dos Relâmpagos",
     "element": "electro",
     "cost": 4,
-    "atk": 900,
-    "hp": 900,
+    "hp": 7,
     "art": "https://a.l3n.co/wE4iSC.png",
     "artPosition": "50% 30%",
-    "effect": "(1-En) Quando esta carta entra em cena: Olhe as 3 cartas do topo do seu deck; coloque uma delas na sua mão e devolva as demais ao topo em qualquer ordem. \n (1-En) Ato: Revele uma carta electro da sua mão: mova 1 token elemental entre unidades no campo. \n (2-En) Ato: Revele uma carta electro e uma carta pyro da sua mão: aplique 1 token electro a uma unidade sua e 1 token pyro a uma unidade sua."
+    "effect": "(1-En) Quando esta carta entra em cena: Olhe as 3 cartas do topo do seu deck; coloque uma delas na sua mão e devolva as demais ao topo em qualquer ordem.\n(1-En) Ato: Revele uma carta electro da sua mão: mova 1 token elemental entre unidades no campo.\n(2-En) Ato: Revele uma carta electro e uma carta pyro da sua mão: aplique 1 token electro a uma unidade sua e 1 token pyro a uma unidade sua."
   },
   {
     "id": "005-dark-ceifadora-do-ultimo-ato",
     "name": "Ceifadora do Último Ato",
     "element": "cryo",
     "cost": 5,
-    "atk": 1100,
-    "hp": 900,
+    "hp": 7,
     "art": "https://d.l3n.co/wE4RYF.png",
     "artPosition": "50% 32%",
-    "effect": "(1-En) Ato: Revele uma carta dark da sua mão: uma unidade oponente perde 300 ATK até o fim do turno. \n (2-En) Ato: Revele uma carta dark e uma carta pyro da sua mão: destrua uma unidade oponente com 600 ATK ou menos. \n (1-En) Quando uma unidade oponente é destruída por este efeito: mova 1 token elemental dela para uma unidade sua."
+    "effect": "(1-En) Ato: Revele uma carta dark da sua mão: mova 1 token elemental de uma unidade oponente para outra unidade oponente.\n(2-En) Ato: Revele uma carta dark e uma carta pyro da sua mão: aplique 1 token pyro a uma unidade oponente e 1 token cryo a outra unidade oponente.\n(1-En) Quando uma reação que contenha um token cryo é realizada em uma unidade oponente: você pode mover 1 token elemental dela para uma unidade sua."
   },
   {
     "id": "006-geo-guardiao-do-palco",
     "name": "Guardião do Palco",
     "element": "geo",
     "cost": 4,
-    "atk": 700,
-    "hp": 1500,
+    "hp": 10,
     "art": "https://a.l3n.co/wE4I1z.png",
     "artPosition": "50% 30%",
-    "effect": "(1-En) Ato: Revele uma carta geo da sua mão: até o fim do turno, a primeira vez que outra unidade sua seria destruída, ela permanece com 100 HP. \n (2-En) Ato: Revele uma carta geo e uma carta pyro da sua mão: esta carta recebe +500 ATK e não pode ser alvo de efeitos de unidades oponentes até o fim do turno. \n (1-En) Quando esta carta retorna do campo para a mão: aplique 1 token geo a uma unidade sua."
+    "effect": "(1-En) Ato: Revele uma carta geo da sua mão: até o fim do turno, a próxima vez que outra unidade sua sofreria dano de uma reação, reduza esse dano em 1.\n(2-En) Ato: Revele uma carta geo e uma carta pyro da sua mão: esta carta recupera 2 de vida e não pode ser alvo de efeitos de unidades oponentes até o fim do turno.\n(1-En) Quando esta carta retorna do campo para a mão: aplique 1 token geo a uma unidade sua."
   },
   {
     "id": "007-electro-marionetista",
     "name": "Marionetista",
     "element": "electro",
     "cost": 4,
-    "atk": 700,
-    "hp": 800,
+    "hp": 7,
     "art": "https://d.l3n.co/wE4WCv.png",
     "artPosition": "50% 30%",
-    "effect": "(1-En) Quando esta carta entra em cena: escolha uma unidade oponente; ela não pode atacar neste turno. \n (1-En) Ato: Revele uma carta electro da sua mão: mova 1 token elemental de uma unidade para outra unidade no campo. \n (2-En) Ato: Revele uma carta electro e uma carta dark da sua mão: escolha uma unidade oponente; ela não pode ativar efeitos até o fim do turno."
+    "effect": "(1-En) Quando esta carta entra em cena: escolha uma unidade oponente; ela não pode realizar ataques neste turno.\n(1-En) Ato: Revele uma carta electro da sua mão: mova 1 token elemental de uma unidade para outra unidade no campo.\n(2-En) Ato: Revele uma carta electro e uma carta dark da sua mão: escolha uma unidade oponente; ela não pode ativar efeitos até o fim do turno."
   },
   {
     "id": "008-pyro-atirador-do-picadeiro",
     "name": "Atirador do Picadeiro",
     "element": "pyro",
     "cost": 3,
-    "atk": 900,
-    "hp": 600,
+    "hp": 5,
     "art": "https://a.l3n.co/wE4A22.png",
     "artPosition": "50% 32%",
-    "effect": "(1-En) Ato: Revele uma carta pyro da sua mão: cause 300 de dano a uma unidade oponente. \n (2-En) Ato: Revele uma carta pyro e uma carta electro da sua mão: cause 600 de dano a uma unidade oponente. \n (1-En) Se esta carta destruir uma unidade em combate: compre 1 carta."
+    "effect": "(1-En) Ato: Revele uma carta pyro da sua mão: aplique 1 token pyro a uma unidade oponente.\n(2-En) Ato: Revele uma carta pyro e uma carta electro da sua mão: aplique 1 token pyro e 1 token electro a uma unidade oponente.\n(1-En) Quando esta carta destruir uma unidade em combate: compre 1 carta."
   },
   {
     "id": "009-anemo-acrobata",
     "name": "Acrobata",
     "element": "anemo",
     "cost": 3,
-    "atk": 700,
-    "hp": 700,
+    "hp": 6,
     "art": "https://c.l3n.co/wE3hqo.png",
     "artPosition": "50% 30%",
-    "effect": "(1-En) Ato: Revele uma carta anemo da sua mão: esta carta não pode ser destruída em combate neste turno. \n (2-En) Ato: Revele uma carta anemo e uma carta hydro da sua mão: devolva esta carta para sua mão; depois, você pode colocar uma unidade do seu Backstage no campo pagando 1-En a menos. \n (1-En) Quando esta carta entra em cena pelo efeito de outra unidade: compre 1 carta."
+    "effect": "(1-En) Ato: Revele uma carta anemo da sua mão: esta carta não pode ser destruída por uma reação neste turno.\n(2-En) Ato: Revele uma carta anemo e uma carta hydro da sua mão: devolva esta carta para sua mão; depois, você pode colocar uma unidade do seu Backstage no campo pagando 1-En a menos.\n(1-En) Quando esta carta entra em cena pelo efeito de outra unidade: compre 1 carta."
   },
   {
     "id": "010-dark-comediante-tragico",
     "name": "Comediante Trágico",
     "element": "dark",
     "cost": 3,
-    "atk": 600,
-    "hp": 800,
+    "hp": 7,
     "art": "https://d.l3n.co/wE4jw5.png",
     "artPosition": "50% 30%",
-    "effect": "(1-En) Quando esta carta entra em cena: escolha uma unidade no campo; ela perde 400 ATK até o fim do turno. \n (1-En) Ato: Revele uma carta dark da sua mão: troque a posição de duas unidades no campo. \n (2-En) Ato: Revele uma carta dark e uma carta anemo da sua mão: devolva esta carta para o Backstage; uma unidade oponente perde 500 ATK até o fim do turno."
+    "effect": "(1-En) Quando esta carta entra em cena: escolha uma unidade no campo; mova 1 token elemental dela para outra unidade no campo.\n(1-En) Ato: Revele uma carta dark da sua mão: troque a posição de duas unidades no campo.\n(2-En) Ato: Revele uma carta dark e uma carta anemo da sua mão: devolva esta carta para o Backstage; uma unidade oponente não pode realizar ataques até o fim do turno."
   },
   {
     "id": "011-hydro-estrela-mascarada",
     "name": "Estrela Mascarada",
     "element": "hydro",
     "cost": 6,
-    "atk": 1400,
-    "hp": 1300,
+    "hp": 10,
     "art": "https://d.l3n.co/wE3a0i.png",
     "artPosition": "50% 28%",
-    "effect": "(2-En) Entrada em Cena: Você pode devolver uma unidade sua para sua mão; se fizer isso, compre 1 carta e aplique 1 token hydro a esta carta. \n (1-En) Ato: Revele uma carta hydro da sua mão: esta carta recebe +400 ATK até o fim do turno. \n (3-En) Ato: Revele uma carta hydro, uma carta pyro e uma carta anemo da sua mão: devolva uma unidade oponente para a mão do dono."
+    "effect": "(2-En) Entrada em Cena: Você pode devolver uma unidade sua para sua mão; se fizer isso, compre 1 carta e aplique 1 token hydro a esta carta.\n(1-En) Ato: Revele uma carta hydro da sua mão: aplique 1 token hydro a uma unidade sua.\n(3-En) Ato: Revele uma carta hydro, uma carta pyro e uma carta anemo da sua mão: devolva uma unidade oponente para a mão do dono."
   },
   {
     "id": "012-geo-regente-do-ultimo-ato",
     "name": "Regente do Último Ato",
     "element": "geo",
     "cost": 7,
-    "atk": 1500,
-    "hp": 1600,
+    "hp": 10,
     "art": "https://c.l3n.co/wE35fm.png",
     "artPosition": "50% 30%",
-    "effect": "(2-En) Entrada em Cena: Você pode devolver uma unidade sua para sua mão; se fizer isso, escolha uma unidade no Backstage e coloque-a no campo pagando 2-En a menos. \n (1-En) Ato: Revele uma carta geo da sua mão: uma unidade sua recebe +300 ATK até o fim do turno. \n (3-En) Ato: Revele uma carta geo, uma carta electro e uma carta dark da sua mão: até o fim do turno, as outras unidades suas podem ativar seus efeitos de Ato sem pagar o primeiro custo de Energia."
+    "effect": "(2-En) Entrada em Cena: Você pode devolver uma unidade sua para sua mão; se fizer isso, escolha uma unidade no Backstage e coloque-a no campo pagando 2-En a menos.\n(1-En) Ato: Revele uma carta geo da sua mão: uma unidade sua recupera 2 de vida.\n(3-En) Ato: Revele uma carta geo, uma carta electro e uma carta dark da sua mão: até o fim do turno, as outras unidades suas podem ativar seus efeitos de Ato sem pagar o primeiro custo de Energia."
   },
   {
     "id": "013-hydro-assistente-de-palco",
     "name": "Assistente de Palco",
     "element": "hydro",
     "cost": 1,
-    "atk": 300,
-    "hp": 500,
+    "hp": 4,
     "art": "https://c.l3n.co/wE4q0a.png",
     "artPosition": "50% 35%",
     "effect": "(1-En) Quando esta carta entra em cena: Olhe as 2 cartas do topo do seu deck; coloque 1 delas na sua mão e envie a outra para o Backstage."
@@ -153,8 +140,7 @@ const card_database = [
     "name": "Operadora de Palco",
     "element": "geo",
     "cost": 1,
-    "atk": 400,
-    "hp": 600,
+    "hp": 5,
     "art": "https://a.l3n.co/wE4QRA.png",
     "artPosition": "50% 35%",
     "effect": "(1-En) Ato: Escolha duas unidades suas; mova 1 token elemental de uma delas para a outra."
@@ -164,41 +150,37 @@ const card_database = [
     "name": "Coelha do Picadeiro",
     "element": "anemo",
     "cost": 1,
-    "atk": 300,
-    "hp": 400,
+    "hp": 4,
     "art": "https://b.l3n.co/wE4mok.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Ato: Retorne esta carta para sua mão; depois, escolha outra unidade sua. Ela recebe +200 ATK até o fim do turno."
+    "effect": "(1-En) Ato: Retorne esta carta para sua mão; depois, escolha outra unidade sua. Ela pode realizar um ataque imediatamente."
   },
   {
     "id": "016-pyro-ponto-do-palco",
     "name": "Ponto do Palco",
     "element": "pyro",
     "cost": 1,
-    "atk": 400,
-    "hp": 400,
+    "hp": 4,
     "art": "https://d.l3n.co/wE4BBe.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Quando esta carta entra em cena: Escolha uma unidade sua. Ela recebe +200 ATK até o fim do turno. \n (1-En) Ato: Retorne esta carta para sua mão; depois, uma unidade sua pode atacar imediatamente."
+    "effect": "(1-En) Quando esta carta entra em cena: Escolha uma unidade sua; ela pode realizar um ataque imediatamente.\n(1-En) Ato: Retorne esta carta para sua mão; depois, uma unidade sua pode realizar um ataque imediatamente."
   },
   {
     "id": "017-cryo-figurinista",
     "name": "Figurinista",
     "element": "cryo",
     "cost": 1,
-    "atk": 200,
-    "hp": 700,
+    "hp": 6,
     "art": "https://b.l3n.co/wE49FQ.png",
     "artPosition": "50% 35%",
-    "effect": "(1-En) Ato: Escolha uma unidade sua. Ela recebe +300 HP até o fim do turno. \n (1-En) Quando esta carta é enviada para o Backstage: Escolha uma unidade sua. Ela recebe +200 HP até o fim do turno."
+    "effect": "(1-En) Ato: Escolha uma unidade sua; ela recupera 2 de vida.\n(1-En) Quando esta carta é enviada para o Backstage: Escolha uma unidade sua; ela recupera 1 de vida."
   },
   {
     "id": "018-electro-tecnica-de-palco",
     "name": "Técnica de Palco",
     "element": "electro",
     "cost": 1,
-    "atk": 400,
-    "hp": 500,
+    "hp": 5,
     "art": "https://d.l3n.co/wE4Cxq.png",
     "artPosition": "50% 35%",
     "effect": "(1-En) Ato: Envie uma unidade sua para o Backstage; depois, você pode mover 1 token elemental dela para outra unidade sua."
@@ -340,6 +322,9 @@ export const gameState = {
     player_2_deck: [],
 
     backstage: [],
+
+    player_1_preview:[null],
+    player_2_preview:[null]
 };
 
 populate_deck();
@@ -373,6 +358,114 @@ export function old_createCard(instanceId) {
 
     return card;
 } */
+
+function fitText(element, {
+    max,
+    min,
+    precision = 0.05,
+    mode = "height"
+}) {
+    let low = min;
+    let high = max;
+    let best = min;
+
+    function fits(size) {
+        element.style.fontSize = `${size}mm`;
+
+        if (mode === "width") {
+            return element.scrollWidth <= element.clientWidth;
+        }
+
+        return element.scrollHeight <= element.clientHeight;
+    }
+
+    // Nem o tamanho mínimo cabe.
+    if (!fits(min)) {
+        return false;
+    }
+
+    while (high - low > precision) {
+        const mid = (low + high) / 2;
+
+        if (fits(mid)) {
+            best = mid;
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+
+    element.style.fontSize = `${best}mm`;
+    return true;
+}
+export function fitCardText(card) {
+    const name = card.querySelector("card-name");
+    const effect = card.querySelector("effect-text");
+
+    if (name) {
+        fitText(name, {
+            max: 4,
+            min: 2,
+            mode: "width"
+        });
+    }
+
+    if (effect) {
+        fitText(effect, {
+            max: 2.8,
+            min: 1.5,
+            mode: "height"
+        });
+    }
+}
+
+function fitCardName(card) {
+    const name = card.querySelector("card-name");
+    const text = name?.querySelector("span");
+
+    if (!name || !text) return;
+
+    const maxSize = 4;
+    const minSize = 2;
+
+    let low = minSize;
+    let high = maxSize;
+
+    // Começa no tamanho normal
+    text.style.fontSize = `${maxSize}mm`;
+
+    // Largura realmente disponível para o texto.
+    // clientWidth já considera a caixa interna,
+    // então descontamos o padding explicitamente.
+    const style = getComputedStyle(name);
+
+    const paddingLeft = parseFloat(style.paddingLeft);
+    const paddingRight = parseFloat(style.paddingRight);
+
+    // 0.5mm extra de segurança para não encostar na borda.
+    const safetyMargin = 0.5;
+
+    const availableWidth =
+        name.clientWidth -
+        paddingLeft -
+        paddingRight -
+        (safetyMargin * name.clientWidth / 28);
+
+    // Procura o maior tamanho que cabe.
+    while (high - low > 0.01) {
+        const mid = (low + high) / 2;
+
+        text.style.fontSize = `${mid}mm`;
+
+        if (text.scrollWidth <= availableWidth) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+
+    text.style.fontSize = `${low}mm`;
+}
 
 export function createCard(instanceId) {
     const instance = cardState[instanceId];
@@ -426,6 +519,7 @@ export function createCard(instanceId) {
     cardData.dataset.atk = definition.atk;
     cardData.dataset.hp = definition.hp;
     cardData.dataset.effect = definition.effect;
+    cardData.dataset.name = definition.name;
 
     /*
      * Arte
@@ -455,6 +549,34 @@ export function createCard(instanceId) {
     card.dataset.instance = instanceId;
 
     card.classList.toggle("flip", instance.flip);
+
+const nameElement = cardData.querySelector("card-name");
+const effectElement = cardData.querySelector("effect-text");
+
+if (nameElement) {
+    const span = nameElement.querySelector("span");
+
+    if (span) {
+        span.textContent = definition.name;
+
+        fitText(nameElement, {
+            max: 4,
+            min: 2,
+            mode: "width"
+        });
+    }
+}
+
+if (effectElement) {
+    effectElement.textContent = definition.effect;
+
+    fitText(effectElement, {
+        max: 2.8,
+        min: 1.5,
+        mode: "height"
+    });
+}
+
 
     return card;
 }
@@ -489,6 +611,8 @@ export function serialize_card(instanceId){
     }
 }
 
+
+
 export function renderField(player) {
     const side = document.querySelector(
         player === 1 ? "player-side" : "opponent-side"
@@ -507,8 +631,10 @@ export function renderField(player) {
 
         if (instanceId === null)
             return;
-
-        slot.append(createCard(instanceId));
+        const card = createCard(instanceId);
+        slot.append(card);
+        fitCardText(card);
+        fitCardName(card);
     });
 }
 
@@ -548,7 +674,10 @@ export function renderDeck(player) {
     const deck = gameState[`player_${player}_deck`];
 
     for (const instanceId of deck) {
-        grid.append(createCard(instanceId));
+        const card = createCard(instanceId);
+        grid.append(card);
+        fitCardText(card);
+        fitCardName(card);
     }
 }
 
@@ -562,9 +691,60 @@ export function renderHand(player) {
     hand.replaceChildren();
 
     for (const instanceId of cardsInHand) {
-        hand.append(createCard(instanceId));
+        const card = createCard(instanceId);
+        hand.append(card);
+        fitCardText(card);
+        fitCardName(card);
     }
 }
+
+export function renderPreview(player) {
+    const preview = document.querySelector("card-render");
+    const previewText = document.querySelector("effect-read");
+
+    const instanceId = gameState[`player_${player}_preview`];
+
+    preview.replaceChildren();
+    previewText.textContent = "";
+
+    if (instanceId == null) {
+        return;
+    }
+
+    const instance = cardState[instanceId];
+
+    if (!instance) {
+        throw new Error(
+            `renderPreview: instância ${instanceId} não existe em cardState`
+        );
+    }
+
+    const definition = cards[instance.card_id];
+
+    if (!definition) {
+        throw new Error(
+            `renderPreview: card_id ${instance.card_id} não existe em cards`
+        );
+    }
+
+    const card = createCard(instanceId);
+
+    preview.append(card);
+    previewText.textContent = definition.effect;
+}
+
+export function setPreview(instanceId, player) {
+    if (!cardState[instanceId]) {
+        throw new Error(
+            `setPreview: instância ${instanceId} não existe`
+        );
+    }
+
+    gameState[`player_${player}_preview`] = instanceId;
+
+    renderPreview(player);
+}
+
 
 export function renderBackstage() {
     const backstage = document.querySelector("backstage-zone");
@@ -576,7 +756,10 @@ export function renderBackstage() {
     if (topCard === undefined)
         return;
 
-    backstage.append(createCard(topCard));
+    const card = createCard(instanceId);
+        backstage.append(card);
+        fitCardText(card);
+        fitCardName(card);
 }
 
 export function renderBackstageModal() {
@@ -585,7 +768,10 @@ export function renderBackstageModal() {
     grid.replaceChildren();
 
     for (const instanceId of gameState.backstage) {
-        grid.append(createCard(instanceId));
+        const card = createCard(instanceId);
+        grid.append(card);
+        fitCardText(card);
+        fitCardName(card);
     }
 }
 

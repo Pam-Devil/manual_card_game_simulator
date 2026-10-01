@@ -1,4 +1,4 @@
-import { cardState, gameState, moveCard, render, renderBackstageModal, renderDeck, serialize_card} from "./src/game.js";
+import { cardState, gameState, moveCard, render, renderBackstageModal, renderDeck, serialize_card, setPreview} from "./src/game.js";
 import { session, switchPerspective } from "./src/session.js";
 
 const actionMenu = document.querySelector("action-menu");
@@ -164,6 +164,7 @@ document.addEventListener("pointerover", event => {
         return;
 
     setActiveCard(card);
+    setPreview(card.dataset.instance, session.player);
 });
 
 document.addEventListener("pointerout", event => {

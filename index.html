@@ -23,14 +23,15 @@
                             <anchor class="top-left">
                                 <cost class="golden-border"></cost>
                             </anchor>
-                            <anchor class="top"></anchor>
+                            <anchor class="top">
+                                <card-name><span></span></card-name>
+                            </anchor>
                             <anchor class="top-right">
                                 <attribute class="golden-border"></attribute>
                             </anchor>
                             <anchor class="left"></anchor>
                             <anchor class="center">
                                 <status>
-                                    <ATK class=""></ATK>
                                     <HP class=""></HP>
                                 </status>
                             </anchor>
@@ -158,15 +159,130 @@
 
 
         <side-panel>
-
             <panel-tabs>
-                <button class="active">Chat</button>
-                <button>Log</button>
-                <button>Ações</button>
+                <label>
+                    <input type="radio" name="panel-tab" checked>
+                    <span>Chat</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="panel-tab">
+                    <span>Log</span>
+                </label>
+
+                <label>
+                    <input type="radio" name="panel-tab">
+                    <span>Ações</span>
+                </label>
             </panel-tabs>
 
             <panel-content>
-                <p>Game log / chat</p>
+
+                <tab-content>
+                    <chat>
+                        <messages>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Hii</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>glhf</text>
+                            </message>
+                            <message data-player="2">
+                                <speaker>Player 1</speaker>
+                                <text>Ok?</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Ok</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Hii</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>glhf</text>
+                            </message>
+                            <message data-player="2">
+                                <speaker>Player 1</speaker>
+                                <text>Ok?</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Ok</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Hii</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>glhf</text>
+                            </message>
+                            <message data-player="2">
+                                <speaker>Player 1</speaker>
+                                <text>Ok?</text>
+                            </message>
+                            <message data-player="1">
+                                <speaker>Player 1</speaker>
+                                <text>Ok</text>
+                            </message>
+                        </messages>
+
+                        <chat-input>
+                            <input type="text" placeholder="Digite uma mensagem...">
+                            <button>Enviar</button>
+                        </chat-input>
+
+
+                    </chat>
+
+                    <event-log>
+                        <log data-register="0">
+                            [1:125:1:"Bailarina das Brisas" atacou 2:178:1:"Dançarina das chamas"]
+                        </log>
+                        <log data-register="1">
+                            [Fim do turno de player 1]
+                        </log>
+
+                        <log data-register="2">
+                            [Player 2 comprou 178:"Dançarina das chamas"]
+                        </log>
+                        <log data-register="3">
+                            [Player 2 enviou 2:125:2:"Assiste de palco" para o backstage]
+                        </log>
+                        <log data-register="4">
+                            [Player 2 invocou 165:"Cantora das Marés" do backstage para slot 2 no campo]
+                        </log>
+                        <log data-register="5">
+                            [2:165:2:"Cantora das Marés" declarou efeito]
+                        </log>
+
+                        <log data-register="6">
+                            [1:176:3:"Figurinista" declarou efeito]
+                        </log>
+
+                        <log data-register="7">
+                            [Player 1 enviou 1:176:3:"Figurinista" da mão para o backstage]
+                        </log>
+
+                        <log data-register="8">
+                            [1:176:3:"Figurinista" deu alvo em 2:165:2"Cantora das Marés"]
+                        </log>
+
+                        <log data-register="9">
+                            [2:165:2:"Cantora das Marés" recebeu um token electro]
+                        </log>
+                    </event-log>
+                </tab-content>
+                <hr>
+                <card-preview>
+                    <card-render></card-render>
+                    <effect-read></effect-read>
+                </card-preview>
+
             </panel-content>
 
         </side-panel>

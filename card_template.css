@@ -133,11 +133,57 @@
         border: 0.5mm solid transparent;
     }
 
+card-name {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 0.5mm;
+    transform: translateX(-46%);
+
+    box-sizing: border-box;
+    width: 28mm;
+    height: 5mm;
+    padding: 0 1.5mm;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+
+    font-weight: bold;
+    white-space: nowrap;
+
+    background-color: var(--element-darker-color);
+    border: 0.5mm solid;
+    border-image: linear-gradient(
+        135deg,
+        #fff4b0,
+        #d4af37 20%,
+        #78500b 40%,
+        #ffe78a 55%,
+        #b8860b 70%,
+        #fff0a0 85%,
+        #a87915
+    ) 1;
+    & > span {
+    display: block;
+    width: max-content;
+    white-space: nowrap;
+    font-size: 4mm;
+}
+}
+
+
+
+
+
     :scope {
         --card-effect: attr(data-effect);
         --card-cost: attr(data-cost);
         --card-atk: attr(data-atk);
         --card-hp: attr(data-hp);
+        --card-name: attr(data-name);
     }
 
     .card-bleed {
@@ -493,30 +539,27 @@
 
                     effect-text {
                         display: block;
+                        box-sizing: border-box;
+
                         width: 52mm;
                         height: 29mm;
+                        padding: 1.5mm;
+                        padding-bottom: 5mm;
 
                         overflow: hidden;
+                        overflow-wrap: anywhere;
+                        white-space: pre-wrap;
 
                         border-radius: 0 0 6mm 6mm;
 
                         position: absolute;
                         z-index: 3;
 
+                        color: white;
+                        -webkit-text-stroke: 0.04mm black;
 
-                        &::before {
-                            content: var(--card-effect);
-
-                            color: white;
-                            -webkit-text-stroke: 0.04mm black;
-
-                            display: block;
-                            padding: 1.5mm;
-                            font-size: 2.8mm;
-
-                            border-radius: 0 0 6mm 6mm;
-                            padding-bottom: 5mm;
-                        }
+                        font-size: var(--effect-font-size, 2.8mm);
+                        line-height: 1.2;
                     }
 
                     &>effect-box {
